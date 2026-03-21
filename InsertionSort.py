@@ -14,7 +14,9 @@ def insertion_sort(arr):
 
 # Example usage
 if __name__ == "__main__":
-    arr = np.random.randint(0, 100, size=10000)
+    arr = np.random.randint(0, 100, size=10000) # Random array of 10,000 integers
+    #arr = np.arange(10000, 0, -1)  # Worst case for insertion sort
+    #arr = np.arange(10000)  # Best case for insertion sort
     start_time = time.time()
     sorted_arr = insertion_sort(arr)
     end_time = time.time()
