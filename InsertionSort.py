@@ -19,3 +19,7 @@ if __name__ == "__main__":
     sorted_arr = insertion_sort(arr)
     end_time = time.time()
     print(f"Execution time: {end_time - start_time} seconds")
+    start_time = time.time()
+    sorted_arr = np.sort(arr)
+    end_time = time.time()
+    print(f"NumPy sort execution time: {end_time - start_time} seconds")
