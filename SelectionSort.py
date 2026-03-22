@@ -1,22 +1,18 @@
-import time
-
-import numpy as np
-
-
-def bubble_sort(arr):
-    flag = True
-    i = 0
-    while flag:
-        flag = False
-        for i in range(len(arr) - 1):
-            if arr[i] > arr[i + 1]:
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
-                flag = True
-        i += 1
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_index = i
+        for j in range(i + 1, n):
+            if arr[min_index] > arr[j]:
+                min_index = j
+        arr[i], arr[min_index] = arr[min_index], arr[i]
     return arr
 
 
-def benchmark_bubble_sort(size=10000, seed=42):
+def benchmark_selection_sort(size=10000, seed=42):
+    import time
+    import numpy as np
+
     np.random.seed(seed)
     cases = {
         "best": np.arange(size),
@@ -28,7 +24,7 @@ def benchmark_bubble_sort(size=10000, seed=42):
     for case_name, case_arr in cases.items():
         arr_copy = case_arr.copy()
         start_time = time.time()
-        bubble_sort(arr_copy)
+        selection_sort(arr_copy)
         end_time = time.time()
         elapsed = end_time - start_time
         timings[case_name] = elapsed
@@ -38,4 +34,4 @@ def benchmark_bubble_sort(size=10000, seed=42):
 
 
 if __name__ == "__main__":
-    benchmark_bubble_sort(size=10000)
+    benchmark_selection_sort(size=10000)

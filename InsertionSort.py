@@ -12,16 +12,27 @@ def insertion_sort(arr):
         arr[j + 1] = key
     return arr
 
-# Example usage
+
+def benchmark_insertion_sort(size=10000, seed=42):
+    np.random.seed(seed)
+    cases = {
+        "best": np.arange(size),
+        "average": np.random.randint(0, size, size=size),
+        "worst": np.arange(size, 0, -1),
+    }
+
+    timings = {}
+    for case_name, case_arr in cases.items():
+        arr_copy = case_arr.copy()
+        start_time = time.time()
+        insertion_sort(arr_copy)
+        end_time = time.time()
+        elapsed = end_time - start_time
+        timings[case_name] = elapsed
+        print(f"{case_name.title()} case ({size} elements): {elapsed:.6f} seconds")
+
+    return timings
+
+
 if __name__ == "__main__":
-    #arr = np.random.randint(0, 100, size=10000) # Random array of 10,000 integers
-    #arr = np.arange(10000, 0, -1)  # Worst case for insertion sort
-    arr = np.arange(10000)  # Best case for insertion sort
-    start_time = time.time()
-    sorted_arr = insertion_sort(arr)
-    end_time = time.time()
-    print(f"Insertion sort execution time: {end_time - start_time} seconds")
-    start_time = time.time()
-    sorted_arr = np.sort(arr)
-    end_time = time.time()
-    print(f"NumPy sort execution time: {end_time - start_time} seconds")
+    benchmark_insertion_sort(size=10000)
